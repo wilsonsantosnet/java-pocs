@@ -1,0 +1,28 @@
+server:
+  port: 8082
+
+azure:
+  activedirectory:
+    client-id: f1cb3f52-4ae8-4e8b-be05-c16445822fb7
+    client-secret: C9A7Q~jINiEmQPCzy99Gro1kYAJm~KcadcI2l
+    tenant-id: 779811d8-4753-4c34-baeb-6b53957d52e3
+    post-logout-redirect-uri: http://localhost:8082
+    application-type: web_application_and_resource_server # This is required.
+#    app-id-uri: api://a3bc9b43-9309-473f-b4f5-cf2a5879baa7
+    authorization-clients:
+      graph:
+        authorizationGrantType: authorization_code # This is required.
+        scopes:
+          - https://graph.microsoft.com/User.Read
+      back:  # Web Application uses webapiA client to access restricted resources.
+        authorizationGrantType: authorization_code
+        scopes:
+         - api://a3bc9b43-9309-473f-b4f5-cf2a5879baa7/AccessAPI
+#      webapiBWithObo: # Resource server uses webapiBObo client to access restricted resources.
+#        authorization-grant-type: on_behalf_of
+#        scopes:
+#          - api:/<Web-API-B-app-id-url>/WebApiB.ExampleScope
+#      webapiBWithClientCredentials:  # Both Web Application or Resource Server can use webapiBWithClientCredentials client to access restricted resources.
+#        authorization-grant-type: client_credentials
+#        scopes:
+#          - api://<Web-API-B-app-id-url>/.default
